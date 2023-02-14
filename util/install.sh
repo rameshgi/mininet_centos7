@@ -50,7 +50,7 @@ test -e /etc/fedora-release && DIST="Fedora"
 test -e /etc/redhat-release && DIST="RedHatEnterpriseServer"
 test -e /etc/centos-release && DIST="RedHatEnterpriseServer"
 if [ "$DIST" = "Fedora" -o "$DIST" = "RedHatEnterpriseServer" ]; then
-    install='sudo yum -y install --exclude=*qpid*'
+    install='sudo yum -y install'
     remove='sudo yum -y erase'
     pkginst='sudo rpm -ivh'
     update='sudo yum'
@@ -140,7 +140,7 @@ OF13_SWITCH_REV=${OF13_SWITCH_REV:-""}
 
 function kernel {
     echo "Install Mininet-compatible kernel if necessary"
-    $update update
+    $update update -y
     if ! $install linux-image-$KERNEL_NAME; then
         echo "Could not install linux-image-$KERNEL_NAME"
         echo "Skipping - assuming installed kernel is OK."
